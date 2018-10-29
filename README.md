@@ -1,4 +1,4 @@
-# ReactJS Challege
+# ReactJS Challenge
 
 Recrutation challange (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgornicz/))
 
