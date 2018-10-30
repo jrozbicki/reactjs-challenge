@@ -4,8 +4,8 @@ import './styles.scss';
 
 function PokemonTypes({ types }) {
   const renderType = () => (
-    types.map(type => (
-      <div className={`type-${type.toLowerCase()}`}>{type}</div>
+    types.map((type, index) => (
+      <div key={index} className={`type-${type.toLowerCase()}`}>{type}</div>
     ))
   );
 
