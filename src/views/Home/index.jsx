@@ -3,17 +3,35 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PokemonsList from './PokemonsList';
 import Pagination from './Pagination';
-import Navbar from './Navbar';
 import Spinner from '../../components/Spinner';
-import { getPokemons } from '../../store/actions';
+import { getPokemons } from '../../store/actions/pokemons';
+
+const propTypes = {
+  isLoading: PropTypes.bool,
+  isError: PropTypes.string,
+  pokemons: PropTypes.instanceOf(Array).isRequired,
+  match: PropTypes.instanceOf(Object).isRequired,
+};
+
+const defaultProps = {
+  isLoading: true,
+  isError: null,
+};
 
 class Home extends Component {
   componentDidMount() {
-    const { page } = this.props.match.params;
+    const { match: { params: { page } } } = this.props;
     if (page) {
       return this.props.getPokemons(page);
     }
     return this.props.getPokemons(1);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { match: { params: { page } } } = this.props;
+    if (prevProps.match.params.page !== page) {
+      this.props.getPokemons(page);
+    }
   }
 
   render() {
@@ -32,6 +50,7 @@ class Home extends Component {
         <Fragment>
           <Pagination />
           <PokemonsList pokemons={pokemons} />
+          <Pagination />
         </Fragment>
       );
     }
@@ -39,16 +58,8 @@ class Home extends Component {
   }
 }
 
-Home.defaultProps = {
-  isLoading: true,
-  isError: null,
-};
-
-Home.propTypes = {
-  isLoading: PropTypes.bool,
-  isError: PropTypes.string,
-  pokemons: PropTypes.instanceOf(Array).isRequired,
-};
+Home.propTypes = propTypes;
+Home.defaultProps = defaultProps;
 
 const mapStateToProps = (state) => {
   return {

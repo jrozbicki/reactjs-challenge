@@ -1,4 +1,4 @@
-import { POKEMONS_LIST_REQUESTED, POKEMONS_LIST_DONE, POKEMONS_LIST_FAILED } from '../actions';
+import { POKEMONS_LIST_REQUESTED, POKEMONS_LIST_DONE, POKEMONS_LIST_FAILED } from '../actions/pokemons';
 
 const initialState = {
   data: [],
