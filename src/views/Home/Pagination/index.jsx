@@ -39,7 +39,7 @@ class Pagination extends Component {
     const pages = [];
     for (let i = 1; i <= num; i++) {
       pages.push(
-        <li key={i} className={`page-item ${currentPage === i ? 'active' : ''} `}>
+        <li key={i} className={`page-item page ${currentPage === i ? 'active' : ''} `}>
           <span id={i} className="page-link" onClick={this.setPage}>{i}</span>
         </li>,
       );

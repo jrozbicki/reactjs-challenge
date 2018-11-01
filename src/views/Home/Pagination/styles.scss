@@ -3,3 +3,9 @@
   justify-content: center;
   margin: 15px;
 }
+
+@media only screen and (max-width: 450px) {
+  .page {
+    display: none;
+  }
+}
