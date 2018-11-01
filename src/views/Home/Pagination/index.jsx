@@ -3,53 +3,43 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setCurrentPage } from '../../../store/actions';
 
 import './styles.scss';
 
 const propTypes = {
-  setCurrentPage: PropTypes.func.isRequired,
   currentPage: PropTypes.number.isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
 };
 
 class Pagination extends Component {
-  componentDidMount() {
-    const { currentPage, match: { params: { page } } } = this.props;
-    if (page !== currentPage) {
-      this.props.setCurrentPage(parseInt(page, 2));
-    } else {
-      this.props.setCurrentPage(1);
-    }
-  }
-
-  setPage(e) {
+  setPage = (e) => {
     const { currentPage, history } = this.props;
-    if (currentPage !== parseInt(e.target.id, 2)) {
-      history.replace(`/page/${parseInt(e.target.id, 2)}`);
+    if (currentPage !== e.target.id) {
+      history.push(`/page/${e.target.id}`);
     }
   }
 
-  setPreviousPage() {
+  setPreviousPage = () => {
     const { currentPage, history } = this.props;
     if (currentPage !== 1) {
       history.replace(`/page/${currentPage - 1}`);
     }
   }
 
-  setNextPage() {
+  setNextPage = () => {
     const { currentPage, history } = this.props;
     if (currentPage !== 8) {
       history.replace(`/page/${currentPage + 1}`);
     }
   }
 
-  renderPages(num, active) {
+  renderPages = (num) => {
+    const { currentPage } = this.props;
     const pages = [];
     for (let i = 1; i <= num; i++) {
       pages.push(
-        <li key={i} className={`page-item ${active === i ? 'active' : ''}`}>
+        <li key={i} className={`page-item ${currentPage === i ? 'active' : ''} `}>
           <span id={i} className="page-link" onClick={this.setPage}>{i}</span>
         </li>,
       );
@@ -62,11 +52,11 @@ class Pagination extends Component {
     return (
       <nav aria-label="...">
         <ul className="pagination">
-          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''} `}>
             <span className="page-link" onClick={this.setPreviousPage}>Previous</span>
           </li>
-          {this.renderPages(8, currentPage)}
-          <li className={`page-item ${currentPage === 8 ? 'disabled' : ''}`}>
+          {this.renderPages(8)}
+          <li className={`page-item ${currentPage === 8 ? 'disabled' : ''} `}>
             <span className="page-link" onClick={this.setNextPage}>Next</span>
           </li>
         </ul>
@@ -84,6 +74,6 @@ const mapStateToProps = ({ currentPage }) => {
 };
 
 export default compose(
-  connect(mapStateToProps, { setCurrentPage }),
+  connect(mapStateToProps),
   withRouter,
 )(Pagination);

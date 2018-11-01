@@ -20,7 +20,7 @@ const defaultProps = {
 
 class Home extends Component {
   componentDidMount() {
-    const { match: { params: { page } } } = this.props;
+    const { page } = this.props.match.params;
     if (page) {
       return this.props.getPokemons(page);
     }
@@ -28,7 +28,7 @@ class Home extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { match: { params: { page } } } = this.props;
+    const { page } = this.props.match.params;
     if (prevProps.match.params.page !== page) {
       this.props.getPokemons(page);
     }
