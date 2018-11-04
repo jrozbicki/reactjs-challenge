@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  types: PropTypes.instanceOf(Array).isRequired,
+};
+
 function PokemonTypes({ types }) {
   const renderType = () => (
     type => <div key={type} className={`type-${type.toLowerCase()}`}>{type}</div>
@@ -13,8 +17,6 @@ function PokemonTypes({ types }) {
   );
 }
 
-PokemonTypes.propTypes = {
-  types: PropTypes.instanceOf(Array).isRequired,
-};
+PokemonTypes.propTypes = propTypes;
 
 export default PokemonTypes;

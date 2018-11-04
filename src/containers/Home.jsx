@@ -10,8 +10,8 @@ const propTypes = {
   isLoading: PropTypes.bool,
   isError: PropTypes.string,
   pokemons: PropTypes.arrayOf(PropTypes.object).isRequired,
-  match: PropTypes.instanceOf(Object).isRequired,
   getPokemons: PropTypes.func.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 const defaultProps = {
@@ -21,18 +21,23 @@ const defaultProps = {
 
 class Home extends Component {
   componentDidMount() {
-    const { match: { params: { page } }, getPokemons: getPokemonsAction } = this.props;
-    if (page) {
-      return getPokemonsAction(page);
-    }
-    return getPokemonsAction(1);
-  }
+    const {
+      getPokemons: getPokemonsAction,
+      history,
+    } = this.props;
 
-  componentDidUpdate({ match: { params: { page: previousPage } } }) {
-    const { match: { params: { page: currentPage } }, getPokemons: getPokemonsAction } = this.props;
-    if (previousPage !== currentPage) {
-      getPokemonsAction(currentPage);
+    if (history.location.search.match(/\d+/) && history.location.search.match(/\d+/)[0]) {
+      getPokemonsAction(history.location.search.match(/\d+/)[0]);
+    } else {
+      getPokemonsAction(1);
     }
+
+    history.listen(() => {
+      if (history.location.search.match(/\d+/) && history.location.search.match(/\d+/)[0]) {
+        console.log('history listen', history.location.search.match(/\d+/)[0]);
+        getPokemonsAction(history.location.search.match(/\d+/)[0]);
+      }
+    });
   }
 
   render() {

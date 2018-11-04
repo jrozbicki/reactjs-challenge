@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import PokemonTypes from './PokemonTypes.jsx';
 
+const propTypes = {
+  pokemons: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 function PokemonsList({ pokemons }) {
   const renderPokemon = () => (
     pokemon => (
@@ -23,8 +27,6 @@ function PokemonsList({ pokemons }) {
   );
 }
 
-PokemonsList.propTypes = {
-  pokemons: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+PokemonsList.propTypes = propTypes;
 
 export default PokemonsList;
