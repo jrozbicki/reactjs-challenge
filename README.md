@@ -1,43 +1,32 @@
 # ReactJS Challenge
 
-Recrutation challange (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgornicz/))
+Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgornicz/))
 
 ### To get started
 
-1. Clone repo with
+1. Clone repo and change directory
 
    ```
    git clone https://github.com/jrozbicki/reactjs-challenge.git
-   ```
-
-2. Change to project directory
-
-   ```
    cd reactjs-challenge
    ```
 
-3. Install dependencies
+2. Install dependencies
 
    ```
    npm install
    ```
 
-4. Install json-server
+3. Start client server (port 3000)
 
    ```
-   npm install -g json-server
+   npm server
    ```
 
-5. Start client server (port 3000)
+4. Start client server (port 3000)
 
    ```
    npm start
-   ```
-
-6. Start json-server (port 5000)
-
-   ```
-   json-server --port 5000 htps://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
    ```
 
 7. Check it out!
