@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PokemonTypes from './PokemonTypes.jsx';
+import PokemonTypes from '../PokemonTypes';
 
 const propTypes = {
   pokemons: PropTypes.arrayOf(PropTypes.object).isRequired,

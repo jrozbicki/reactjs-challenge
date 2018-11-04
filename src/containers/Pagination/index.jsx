@@ -15,7 +15,7 @@ function Pagination({ history }) {
 
   const renderPages = (num) => {
     const pages = [];
-    for (let i = 1; i <= num; i++) {
+    for (let i = 1; i <= num; i += 1) {
       pages.push(
         <li key={i} className={`page-item page ${currentPage === i && 'active'}`}>
           <Link to={{ search: `?page=${i}` }} id={i} className="page-link">{i}</Link>

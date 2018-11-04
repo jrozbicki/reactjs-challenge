@@ -13,17 +13,19 @@ import * as serviceWorker from './serviceWorker';
 
 import reducers from './store/reducers';
 
-import Home from './containers/Home.jsx';
+import Home from './containers/Home';
 import './styles/styles.scss';
 
 const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
 
 const store = createStoreWithMiddleware(
   reducers,
+  /* eslint-disable no-underscore-dangle */
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 ReactDOM.render(
+  /* eslint-disable react/jsx-filename-extension */
   <Provider store={store}>
     <BrowserRouter>
       <Switch>

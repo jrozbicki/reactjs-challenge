@@ -29,7 +29,7 @@ export const getPokemons = page => async (dispatch) => {
   try {
     dispatch(getPokemonsRequested());
     const response = await axios.get(
-      `${BASE_URI}pokemon?_page=${page}${LIMIT}`,
+      `${BASE_URI}/pokemon?_page=${page}${LIMIT}`,
     );
     dispatch(getPokemonsDone(response.data));
   } catch (err) {

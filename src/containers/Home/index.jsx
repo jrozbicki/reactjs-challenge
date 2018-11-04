@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import PokemonsList from '../components/PokemonList.jsx';
-import Pagination from './Pagination.jsx';
-import Spinner from '../components/Spinner.jsx';
-import { getPokemons } from '../store/actions/pokemons';
+import PokemonsList from '../../components/PokemonList';
+import Pagination from '../Pagination';
+import Spinner from '../../components/Spinner';
+import { getPokemons } from '../../store/actions/pokemons';
 
 const propTypes = {
   isLoading: PropTypes.bool,
@@ -34,7 +34,6 @@ class Home extends Component {
 
     history.listen(() => {
       if (history.location.search.match(/\d+/) && history.location.search.match(/\d+/)[0]) {
-        console.log('history listen', history.location.search.match(/\d+/)[0]);
         getPokemonsAction(history.location.search.match(/\d+/)[0]);
       }
     });
