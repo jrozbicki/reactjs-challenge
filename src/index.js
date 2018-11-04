@@ -4,12 +4,17 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 import reducers from './store/reducers';
 
-import App from './views/App/App';
-import './index.css';
+import Home from './containers/Home.jsx';
+import './styles/styles.scss';
 
 const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
 
@@ -20,7 +25,12 @@ const store = createStoreWithMiddleware(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/page/:page" component={Home} />
+        <Route exact path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );

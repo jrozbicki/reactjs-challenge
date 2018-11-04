@@ -1,16 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import PokemonsList from './PokemonsList';
-import Pagination from './Pagination';
-import Spinner from '../../components/Spinner';
-import { getPokemons } from '../../store/actions/pokemons';
+import PokemonsList from '../components/PokemonList.jsx';
+import Pagination from './Pagination.jsx';
+import Spinner from '../components/Spinner.jsx';
+import { getPokemons } from '../store/actions/pokemons';
 
 const propTypes = {
   isLoading: PropTypes.bool,
   isError: PropTypes.string,
-  pokemons: PropTypes.instanceOf(Array).isRequired,
+  pokemons: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
+  getPokemons: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -20,17 +21,17 @@ const defaultProps = {
 
 class Home extends Component {
   componentDidMount() {
-    const { page } = this.props.match.params;
+    const { match: { params: { page } }, getPokemons: getPokemonsAction } = this.props;
     if (page) {
-      return this.props.getPokemons(page);
+      return getPokemonsAction(page);
     }
-    return this.props.getPokemons(1);
+    return getPokemonsAction(1);
   }
 
-  componentDidUpdate(prevProps) {
-    const { page } = this.props.match.params;
-    if (prevProps.match.params.page !== page) {
-      this.props.getPokemons(page);
+  componentDidUpdate({ match: { params: { page: previousPage } } }) {
+    const { match: { params: { page: currentPage } }, getPokemons: getPokemonsAction } = this.props;
+    if (previousPage !== currentPage) {
+      getPokemonsAction(currentPage);
     }
   }
 
@@ -61,12 +62,12 @@ class Home extends Component {
 Home.propTypes = propTypes;
 Home.defaultProps = defaultProps;
 
-const mapStateToProps = (state) => {
-  return {
-    isLoading: state.pokemons.isLoading,
-    isError: state.pokemons.isError,
-    pokemons: state.pokemons.data,
-  };
-};
+const mapStateToProps = ({ pokemons: { isLoading, isError, data: pokemons } }) => (
+  {
+    isLoading,
+    isError,
+    pokemons,
+  }
+);
 
 export default connect(mapStateToProps, { getPokemons })(Home);

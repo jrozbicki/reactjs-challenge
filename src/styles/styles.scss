@@ -1,0 +1,212 @@
+@import './reset.scss';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+// Pokemon List
+
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 10px;
+  width: 250px;
+}
+
+.card-img-top {
+  padding: 15px;
+  width: 248px;
+  height: 248px;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+$card-width: 270px;
+
+@media only screen and (max-width: calc(8*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(7*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(7*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(6*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(6*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(5*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(5*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(4*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(4*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(3*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(3*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(2*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(2*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(1*#{$card-width});
+    margin: auto;
+  }
+}
+
+// Pokemon Types
+
+// colors taken from 
+// https://en.wikipedia.org/wiki/Pok%C3%A9mon_Trading_Card_Game#Pok%C3%A9mon_types
+
+$types: (
+  grass: #00ba47,
+  bug: #00ba47,
+  fire: #ff3d4a,
+  water: #00aaf9,
+  ice: #00aaf9,
+  electric: #ffec49,
+  poison: #de00d6,
+  psychic: #de00d6,
+  ghost: #de00d6,
+  ground: #d97537,
+  rock: #d97537,
+  fighting: #d97537,
+  dark: #363636,
+  steel: #bebebe,
+  fairy: #f33981,
+  dragon: #b19768,
+  normal: #9c9c9c,
+  flying: #bebebe,
+  text-color: #ffffff,
+);
+
+@mixin type($type) {
+  .type-#{$type} {
+    margin: 5px;
+    padding: 5px;
+    color: map-get($types, text-color);
+    font-weight: 700;
+    background: map-get($types, $type);
+    border-radius: 5px;
+  }
+}
+
+@include type(grass);
+@include type(bug);
+@include type(fire);
+@include type(water);
+@include type(ice);
+@include type(electric);
+@include type(poison);
+@include type(psychic);
+@include type(ghost);
+@include type(ground);
+@include type(rock);
+@include type(fighting);
+@include type(dark);
+@include type(steel);
+@include type(fairy);
+@include type(dragon);
+@include type(normal);
+@include type(flying);
+
+.types-container {
+  display: flex;
+  justify-content: center;
+}
+
+// Pagination
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+@media only screen and (max-width: 450px) {
+  .page {
+    display: none;
+  }
+}
+
+// Spinner
+$spinner: salmon;
+$background: white;
+$size: 50px;
+
+html { background-color: $background; }
+
+.spinner {
+  position: absolute;
+  top: calc(50% - #{$size / 2});
+  left: calc(50% - #{$size / 2});
+  width: $size;
+  height: $size;
+  animation: spinner 0.75s linear infinite;
+
+  span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
+  .spinner-inner-1 {
+    background: linear-gradient(to right, rgba($spinner,0) 0%,rgba($spinner,0) 50%,$spinner 51%);
+  }
+  
+  .spinner-inner-2 {
+    background: linear-gradient(to top, rgba($background,0) 0%,$background 100%);
+  }
+  
+  .spinner-inner-3 {
+    $offset: $size * 0.1;
+    top: $offset;
+    left: $offset;
+    width: $size - ($offset * 2);
+    height: $size - ($offset * 2);
+    background: $background;
+  }
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

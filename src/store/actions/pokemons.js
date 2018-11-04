@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { BASE_URI, LIMIT } from '../../config';
 
 export const POKEMONS_LIST_REQUESTED = 'POKEMONS_LIST_REQUESTED';
 export const POKEMONS_LIST_FAILED = 'POKEMONS_LIST_FAILED';
@@ -37,7 +38,7 @@ export const getPokemons = page => async (dispatch) => {
   try {
     dispatch(getPokemonsRequested());
     const response = await axios.get(
-      `http://localhost:5000/pokemon?_page=${page}&_limit=20`,
+      `${BASE_URI}pokemon?_page=${page}${LIMIT}`,
     );
     dispatch(getPokemonsDone(response.data));
     dispatch(setCurrentPage(page));
