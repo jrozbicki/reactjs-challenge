@@ -1,0 +1,72 @@
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 10px;
+  width: 250px;
+}
+
+.card-img-top {
+  padding: 15px;
+  width: 248px;
+  height: 248px;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+$card-width: 270px;
+
+@media only screen and (max-width: calc(8*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(7*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(7*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(6*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(6*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(5*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(5*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(4*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(4*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(3*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(3*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(2*#{$card-width});
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: calc(2*#{$card-width} - 1px)) {
+  .pokemon-list {
+    width: calc(1*#{$card-width});
+    margin: auto;
+  }
+}

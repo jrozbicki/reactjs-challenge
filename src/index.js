@@ -7,7 +7,6 @@ import logger from 'redux-logger';
 import {
   BrowserRouter,
   Route,
-  Switch,
 } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -28,10 +27,7 @@ ReactDOM.render(
   /* eslint-disable react/jsx-filename-extension */
   <Provider store={store}>
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/page/:page" component={Home} />
-        <Route exact path="/" component={Home} />
-      </Switch>
+      <Route path={['/pokemons/:page', '/']} component={Home} />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'),

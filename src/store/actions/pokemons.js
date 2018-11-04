@@ -31,7 +31,7 @@ export const getPokemons = page => async (dispatch) => {
     const response = await axios.get(
       `${BASE_URI}/pokemon?_page=${page}${LIMIT}`,
     );
-    dispatch(getPokemonsDone(response.data));
+    dispatch(getPokemonsDone(response));
   } catch (err) {
     dispatch(getPokemonsFailed(err));
   }

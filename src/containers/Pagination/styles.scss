@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.page-link:focus { 
+  box-shadow: none;
+}
+
+.page-item.disabled .page-link{
+  background-color:#E7EBEE;
+}
+
+@media only screen and (max-width: 450px) {
+  .page {
+    display: none;
+  }
+}

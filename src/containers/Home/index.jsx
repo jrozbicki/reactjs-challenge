@@ -1,61 +1,66 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Pagination from '../../containers/Pagination';
 import PokemonsList from '../../components/PokemonList';
-import Pagination from '../Pagination';
 import Spinner from '../../components/Spinner';
 import { getPokemons } from '../../store/actions/pokemons';
 
 const propTypes = {
   isLoading: PropTypes.bool,
+  total: PropTypes.string,
   isError: PropTypes.string,
   pokemons: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPokemons: PropTypes.func.isRequired,
-  history: PropTypes.instanceOf(Object).isRequired,
+  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 const defaultProps = {
   isLoading: true,
   isError: null,
+  total: '',
 };
 
 class Home extends Component {
   componentDidMount() {
     const {
       getPokemons: getPokemonsAction,
-      history,
+      match: { params: { page: startingPage } },
     } = this.props;
 
-    if (history.location.search.match(/\d+/) && history.location.search.match(/\d+/)[0]) {
-      getPokemonsAction(history.location.search.match(/\d+/)[0]);
+    if (startingPage) {
+      getPokemonsAction(startingPage);
     } else {
       getPokemonsAction(1);
     }
+  }
 
-    history.listen(() => {
-      if (history.location.search.match(/\d+/) && history.location.search.match(/\d+/)[0]) {
-        getPokemonsAction(history.location.search.match(/\d+/)[0]);
-      }
-    });
+  componentDidUpdate({ match: { params: { page: previousPage } } }) {
+    const { getPokemons: getPokemonsAction, match: { params: { page: currentPage } } } = this.props;
+
+    if (previousPage !== currentPage) {
+      getPokemonsAction(currentPage);
+    }
   }
 
   render() {
-    const { isLoading, isError, pokemons } = this.props;
+    const {
+      isLoading,
+      isError,
+      pokemons,
+      total,
+    } = this.props;
 
     if (isError) {
       return isError;
     }
 
-    if (isLoading) {
-      return <Spinner />;
-    }
-
     if (pokemons.length) {
       return (
         <Fragment>
-          <Pagination />
-          <PokemonsList pokemons={pokemons} />
-          <Pagination />
+          <Pagination total={total} limit="20" />
+          {isLoading ? <Spinner /> : <PokemonsList pokemons={pokemons} />}
+          <Pagination total={total} limit="20" />
         </Fragment>
       );
     }
@@ -66,11 +71,21 @@ class Home extends Component {
 Home.propTypes = propTypes;
 Home.defaultProps = defaultProps;
 
-const mapStateToProps = ({ pokemons: { isLoading, isError, data: pokemons } }) => (
+const mapStateToProps = (
+  {
+    pokemons: {
+      isLoading,
+      isError,
+      data: pokemons,
+      total,
+    },
+  },
+) => (
   {
     isLoading,
     isError,
     pokemons,
+    total,
   }
 );
 

@@ -2,14 +2,17 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import pageCounter from '../../utils/pageCounter';
+
 const propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
+  total: PropTypes.string.isRequired,
+  limit: PropTypes.string.isRequired,
+  match: PropTypes.instanceOf(Object).isRequired,
 };
 
-function Pagination({ history }) {
+function Pagination({ match: { params: { page } }, total, limit }) {
   let currentPage = 1;
-  if (history.location.search.match(/\d+/) && history.location.search.match(/\d+/)[0]) {
-    const [page] = history.location.search.match(/\d+/);
+  if (page) {
     currentPage = parseInt(page, 10);
   }
 
@@ -18,7 +21,7 @@ function Pagination({ history }) {
     for (let i = 1; i <= num; i += 1) {
       pages.push(
         <li key={i} className={`page-item page ${currentPage === i && 'active'}`}>
-          <Link to={{ search: `?page=${i}` }} id={i} className="page-link">{i}</Link>
+          <Link to={`/pokemons/${i}`} id={i} className="page-link">{i}</Link>
         </li>,
       );
     }
@@ -26,17 +29,15 @@ function Pagination({ history }) {
   };
 
   return (
-    <nav aria-label="...">
-      <ul className="pagination">
-        <li className={`page-item ${currentPage === 1 && 'disabled'}`}>
-          <Link to={{ search: `?page=${currentPage - 1}` }} className="page-link">Previous</Link>
-        </li>
-        {renderPages(8)}
-        <li className={`page-item ${currentPage === 8 && 'disabled'}`}>
-          <Link to={{ search: `?page=${currentPage + 1}` }} className="page-link">Next</Link>
-        </li>
-      </ul>
-    </nav>
+    <ul className="pagination">
+      <li className={`page-item ${currentPage === 1 && 'disabled'}`}>
+        <Link to={`/pokemons/${currentPage - 1}`} className="page-link">Previous</Link>
+      </li>
+      {renderPages(pageCounter(total, limit))}
+      <li className={`page-item ${currentPage === pageCounter(total, limit) && 'disabled'}`}>
+        <Link to={`/pokemons/${currentPage + 1}`} className="page-link">Next</Link>
+      </li>
+    </ul>
   );
 }
 

@@ -6,13 +6,9 @@ const propTypes = {
 };
 
 function PokemonTypes({ types }) {
-  const renderType = () => (
-    type => <div key={type} className={`type-${type.toLowerCase()}`}>{type}</div>
-  );
-
   return (
     <div className="types-container">
-      {types.map(renderType())}
+      {types.map(type => <div key={type} className={`type-${type.toLowerCase()}`}>{type}</div>)}
     </div>
   );
 }
