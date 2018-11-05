@@ -4,6 +4,12 @@ $size: 50px;
 
 html { background-color: $background; }
 
+.spinner-container {
+  width: 90vw;
+  height: calc(100vh - 38px);
+  margin: auto;
+}
+
 .spinner {
   position: absolute;
   top: calc(50% - #{$size / 2});

@@ -4,28 +4,36 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import * as serviceWorker from './serviceWorker';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
 import reducers from './store/reducers';
 
-import App from './views/App/App';
-import './index.css';
+import Home from './containers/Home';
+import ShowError from './components/ShowError';
+import './styles/styles.scss';
 
 const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
 
 const store = createStoreWithMiddleware(
   reducers,
+  /* eslint-disable no-underscore-dangle */
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 ReactDOM.render(
+  /* eslint-disable react/jsx-filename-extension */
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <Switch>
+        <Route path="/pokemons/:page" component={Home} />
+        <Route exact path="/" component={Home} />
+        <Route component={ShowError} />
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
