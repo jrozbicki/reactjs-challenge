@@ -15,8 +15,9 @@ class Filter extends Component {
   }
 
   setLimit = (e) => {
-    this.props.setParentLimit(e.target.value);
-    this.setState({ limit: e.target.value})
+    const { setParentLimit } = this.props;
+    setParentLimit(e.target.value);
+    this.setState({ limit: e.target.value });
   }
 
   render() {
@@ -25,6 +26,7 @@ class Filter extends Component {
       <div className="filter-container">
         <div className="input-group mb-3 select-container">
           <div className="input-group-prepend">
+            {/* eslint-disable */}
             <label className="input-group-text" htmlFor="quantitySelect">Display</label>
           </div>
           <select onChange={this.setLimit} value={limit} className="custom-select" id="quantitySelect">
