@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Pagination from '../../containers/Pagination';
+import Pagination from '../Pagination';
 import PokemonsList from '../../components/PokemonList';
 import Spinner from '../../components/Spinner';
+import ShowError from '../../components/ShowError';
 import { getPokemons } from '../../store/actions/pokemons';
 
 const propTypes = {
@@ -52,7 +53,7 @@ class Home extends Component {
     } = this.props;
 
     if (isError) {
-      return isError;
+      return <ShowError />;
     }
 
     if (pokemons.length) {
@@ -64,7 +65,7 @@ class Home extends Component {
         </Fragment>
       );
     }
-    return null;
+    return <ShowError />;
   }
 }
 
