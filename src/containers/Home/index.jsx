@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Pagination from '../Pagination';
+import Filter from '../../components/Filter';
 import PokemonsList from '../../components/PokemonList';
 import Spinner from '../../components/Spinner';
 import ShowError from '../../components/ShowError';
@@ -23,26 +24,37 @@ const defaultProps = {
 };
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      limit: '20',
+    };
+  }
+
   componentDidMount() {
     const {
       getPokemons: getPokemonsAction,
       match: { params: { page: startingPage } },
     } = this.props;
+    const { limit } = this.state;
 
     if (startingPage) {
-      getPokemonsAction(startingPage);
+      getPokemonsAction(startingPage, limit);
     } else {
-      getPokemonsAction(1);
+      getPokemonsAction(1, limit);
     }
   }
 
-  componentDidUpdate({ match: { params: { page: previousPage } } }) {
+  componentDidUpdate({ match: { params: { page: previousPage } } }, prevState) {
     const { getPokemons: getPokemonsAction, match: { params: { page: currentPage } } } = this.props;
-
-    if (previousPage !== currentPage) {
-      getPokemonsAction(currentPage);
+    const { limit } = this.state;
+    if (previousPage !== currentPage || prevState.limit !== limit) {
+      getPokemonsAction(currentPage, limit);
     }
   }
+
+  setLimit = lim => this.setState({ limit: lim });
 
   render() {
     const {
@@ -51,6 +63,7 @@ class Home extends Component {
       pokemons,
       total,
     } = this.props;
+    const { limit } = this.state;
 
     if (isError) {
       return <ShowError />;
@@ -59,9 +72,12 @@ class Home extends Component {
     if (pokemons.length) {
       return (
         <Fragment>
-          <Pagination total={total} limit="20" />
+          <div className="header-container">
+            <Pagination total={total} limit={limit} />
+            <Filter setParentLimit={this.setLimit} />
+          </div>
           {isLoading ? <Spinner /> : <PokemonsList pokemons={pokemons} />}
-          <Pagination total={total} limit="20" />
+          <Pagination total={total} limit={limit} />
         </Fragment>
       );
     }

@@ -1,75 +1,52 @@
-.pokemon-list {
+.header-container { 
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  box-sizing: content-box;
-  padding: 0 10px;
-}
-
-.card {
-  margin: 10px;
-  width: 250px;
-}
-
-.card-img-top {
-  padding: 15px;
-  width: 248px;
-  height: 248px;
-}
-
-.card-title {
-  text-align: center;
-  font-size: 24px;
-  font-weight: 500;
+  margin: auto;
 }
 
 $card-width: 270px;
 $spacing: 25px;
 
 @media only screen and (max-width: calc(8*#{$card-width} + #{$spacing})) {
-  .pokemon-list {
-    width: calc(7*#{$card-width});    
-    margin: auto;
+  .header-container {
+    width: calc(7*#{$card-width});
   }
 }
 
 @media only screen and (max-width: calc(7*#{$card-width} + #{$spacing})) {
-  .pokemon-list {
+  .header-container  {
     width: calc(6*#{$card-width});
-    margin: auto;
   }
 }
 
 @media only screen and (max-width: calc(6*#{$card-width} + #{$spacing})) {
-  .pokemon-list {
+  .header-container  {
     width: calc(5*#{$card-width});
-    margin: auto;
   }
 }
 
 @media only screen and (max-width: calc(5*#{$card-width} + #{$spacing})) {
-  .pokemon-list {
+  .header-container  {
     width: calc(4*#{$card-width});
-    margin: auto;
   }
 }
 
 @media only screen and (max-width: calc(4*#{$card-width} + #{$spacing})) {
-  .pokemon-list {
+  .header-container  {
     width: calc(3*#{$card-width});
-    margin: auto;
   }
 }
 
 @media only screen and (max-width: calc(3*#{$card-width} + #{$spacing})) {
-  .pokemon-list {
+  .header-container {
     width: calc(2*#{$card-width});
-    margin: auto;
   }
 }
 
 @media only screen and (max-width: calc(2*#{$card-width} + #{$spacing})) {
-  .pokemon-list {
+  .header-container  {
     width: calc(1*#{$card-width});
-    margin: auto;
   }
 }
