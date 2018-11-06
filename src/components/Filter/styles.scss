@@ -10,6 +10,12 @@
   margin-bottom: 0px !important;
 }
 
+.custom-select:focus {
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
 @media only screen and (max-width: 835px) {
   .filter-container {
     margin: 10px auto;

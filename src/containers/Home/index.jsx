@@ -76,7 +76,7 @@ class Home extends Component {
             <Pagination total={total} limit={limit} />
             <Filter setParentLimit={this.setLimit} />
           </div>
-          {isLoading ? <Spinner /> : <PokemonsList pokemons={pokemons} />}
+          {isLoading ? <Spinner /> : <PokemonsList pokemons={pokemons} />}          
           <Pagination total={total} limit={limit} />
         </Fragment>
       );

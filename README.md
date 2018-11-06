@@ -2,6 +2,8 @@
 
 Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgornicz/))
 
+### Base version is at 'master' branch, bonus features are at 'bonus-features' branch
+
 ### To get started
 
 1. Clone repo and change directory
@@ -29,7 +31,6 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
    npm start
    ```
 
-7. Check it out!
 
 ### Built with
 
