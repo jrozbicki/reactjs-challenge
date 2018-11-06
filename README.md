@@ -13,8 +13,7 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
   Bonus features:
     * Quantity select
     * Modal with more details
-    * Navbar with search 
-    * Unit tests
+    * Navbar with search
 
 ### To get started
 

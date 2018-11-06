@@ -87,7 +87,7 @@ class Home extends Component {
         <Navbar limit={limit} />
         <div className="content-container">
           <Pagination total={total} limit={limit} />
-          <Filter setParentLimit={this.setLimit} />        
+          <Filter setParentLimit={this.setLimit} />
           {
             pokemons.length
               ? this.renderContent(isLoading, pokemons, total, limit)
