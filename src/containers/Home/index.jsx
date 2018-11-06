@@ -7,6 +7,7 @@ import Filter from '../../components/Filter';
 import PokemonsList from '../../components/PokemonList';
 import Spinner from '../../components/Spinner';
 import ShowError from '../../components/ShowError';
+import NoPokemonsHere from '../../components/NoPokemonsHere';
 import { getPokemons } from '../../store/actions/pokemons';
 
 const propTypes = {
@@ -57,6 +58,17 @@ class Home extends Component {
 
   setLimit = lim => this.setState({ limit: lim });
 
+  renderContent = (isLoading, pokemons, total, limit) => (
+    isLoading
+      ? <Spinner />
+      : (
+        <Fragment>
+          <PokemonsList pokemons={pokemons} />
+          <Pagination total={total} limit={limit} />
+        </Fragment>
+      )
+  );
+
   render() {
     const {
       isLoading,
@@ -70,20 +82,20 @@ class Home extends Component {
       return <ShowError />;
     }
 
-    if (pokemons.length) {
-      return (
-        <Fragment>
-          <Navbar />
-          <div className="header-container">
-            <Pagination total={total} limit={limit} />
-            <Filter setParentLimit={this.setLimit} />
-          </div>
-          {isLoading ? <Spinner /> : <PokemonsList pokemons={pokemons} />}          
+    return (
+      <Fragment>
+        <Navbar limit={limit} />
+        <div className="content-container">
           <Pagination total={total} limit={limit} />
-        </Fragment>
-      );
-    }
-    return <ShowError />;
+          <Filter setParentLimit={this.setLimit} />        
+          {
+            pokemons.length
+              ? this.renderContent(isLoading, pokemons, total, limit)
+              : <NoPokemonsHere />
+          }
+        </div>
+      </Fragment>
+    );
   }
 }
 

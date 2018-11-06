@@ -1,4 +1,4 @@
-.header-container { 
+.content-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,43 +10,43 @@ $card-width: 270px;
 $spacing: 25px;
 
 @media only screen and (max-width: calc(8*#{$card-width} + #{$spacing})) {
-  .header-container {
+  .content-container {
     width: calc(7*#{$card-width});
   }
 }
 
 @media only screen and (max-width: calc(7*#{$card-width} + #{$spacing})) {
-  .header-container  {
+  .content-container  {
     width: calc(6*#{$card-width});
   }
 }
 
 @media only screen and (max-width: calc(6*#{$card-width} + #{$spacing})) {
-  .header-container  {
+  .content-container  {
     width: calc(5*#{$card-width});
   }
 }
 
 @media only screen and (max-width: calc(5*#{$card-width} + #{$spacing})) {
-  .header-container  {
+  .content-container  {
     width: calc(4*#{$card-width});
   }
 }
 
 @media only screen and (max-width: calc(4*#{$card-width} + #{$spacing})) {
-  .header-container  {
+  .content-container  {
     width: calc(3*#{$card-width});
   }
 }
 
 @media only screen and (max-width: calc(3*#{$card-width} + #{$spacing})) {
-  .header-container {
+  .content-container {
     width: calc(2*#{$card-width});
   }
 }
 
 @media only screen and (max-width: calc(2*#{$card-width} + #{$spacing})) {
-  .header-container  {
+  .content-container  {
     width: calc(1*#{$card-width});
   }
 }

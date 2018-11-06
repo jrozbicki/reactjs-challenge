@@ -34,7 +34,7 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
 3. Start client server (port 5000)
 
    ```
-   npm server
+   npm run server
    ```
 
 4. Start client server (port 3000)

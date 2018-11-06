@@ -37,11 +37,11 @@ export const getPokemons = (page, limit) => async (dispatch) => {
   }
 };
 
-export const getPokemonByName = searchTerm => async (dispatch) => {
+export const getPokemonByName = (searchTerm, limit) => async (dispatch) => {
   try {
     dispatch(getPokemonsRequested());
     const response = await axios.get(
-      `${BASE_URI}/pokemon?name_like=${searchTerm}`,
+      `${BASE_URI}/pokemon?name_like=${searchTerm}&_limit=${limit}`,
     );
     dispatch(getPokemonsDone(response));
   } catch (err) {

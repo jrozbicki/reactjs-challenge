@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPokemonByName } from '../../store/actions/pokemons';
+import Pokedex from '../../img/pokedex.png';
 
 const propTypes = {
   getPokemonByName: PropTypes.func.isRequired,
+  limit: PropTypes.string.isRequired,
 };
 
 class Navbar extends Component {
@@ -17,18 +19,25 @@ class Navbar extends Component {
   }
 
   handleInputChange = (e) => {
-    const { getPokemonByName: getPokemonByNameAction } = this.props;
+    const { getPokemonByName: getPokemonByNameAction, limit } = this.props;
     this.setState({ searchTerm: e.target.value });
-    getPokemonByNameAction(e.target.value);
+    getPokemonByNameAction(e.target.value, limit);
   };
 
   render() {
     const { searchTerm } = this.state;
     return (
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar navbar-dark bg-primary">
+        <img className="pokedex-logo" src={Pokedex} alt="pokedex" />
         <form className="form-inline">
-          <input className="form-control mr-sm-2" onChange={this.handleInputChange} value={searchTerm} type="search" placeholder="Search" aria-label="Search" />
-          {/* <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
+          <input
+            className="form-control mr-sm-2"
+            onChange={this.handleInputChange}
+            value={searchTerm}
+            type="search"
+            placeholder="Search pokemons..."
+            aria-label="Search"
+          />
         </form>
       </nav>
     );
