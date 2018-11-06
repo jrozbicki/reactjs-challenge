@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getPokemonByName } from '../../store/actions/pokemons';
 import Pokedex from '../../img/pokedex.png';
 
@@ -28,7 +29,9 @@ class Navbar extends Component {
     const { searchTerm } = this.state;
     return (
       <nav className="navbar navbar-dark bg-primary">
-        <img className="pokedex-logo" src={Pokedex} alt="pokedex" />
+        <Link to="/">
+          <img className="pokedex-logo" src={Pokedex} alt="pokedex" />
+        </Link>
         <form className="form-inline">
           <input
             className="form-control mr-sm-2"
