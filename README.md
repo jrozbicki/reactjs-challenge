@@ -3,6 +3,18 @@
 Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgornicz/))
 
 ### Base version is at 'master' branch, bonus features are at 'bonus-features' branch
+  Base version contains:
+    * List of Pokemons
+    * Pagination
+    * Routing (/pokemons/:page)
+    * Loader (spinner)
+    * Error screen
+  
+  Bonus features:
+    * Quantity select
+    * Modal with more details
+    * Navbar with search 
+    * Unit tests
 
 ### To get started
 

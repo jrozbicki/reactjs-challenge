@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Navbar from '../../components/Navbar';
 import Pagination from '../Pagination';
 import Filter from '../../components/Filter';
 import PokemonsList from '../../components/PokemonList';
@@ -72,6 +73,7 @@ class Home extends Component {
     if (pokemons.length) {
       return (
         <Fragment>
+          <Navbar />
           <div className="header-container">
             <Pagination total={total} limit={limit} />
             <Filter setParentLimit={this.setLimit} />

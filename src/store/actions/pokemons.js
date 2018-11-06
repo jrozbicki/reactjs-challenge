@@ -36,3 +36,15 @@ export const getPokemons = (page, limit) => async (dispatch) => {
     dispatch(getPokemonsFailed(err));
   }
 };
+
+export const getPokemonByName = searchTerm => async (dispatch) => {
+  try {
+    dispatch(getPokemonsRequested());
+    const response = await axios.get(
+      `${BASE_URI}/pokemon?name_like=${searchTerm}`,
+    );
+    dispatch(getPokemonsDone(response));
+  } catch (err) {
+    dispatch(getPokemonsFailed(err));
+  }
+};
