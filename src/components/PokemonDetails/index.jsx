@@ -31,16 +31,13 @@ function PokemonDetails({ pokemonDetails }) {
               {`Egg: ${pokemonDetails.egg}`}
             </div>
           </aside>
-          <div className="pokemon-weaknesses">
-            <div className="pokemon-details">Weak against:</div>
-            <PokemonTypes types={pokemonDetails.weaknesses} />
-          </div>
           <div className="pokemon-types">
-            <div className="pokemon-details">Type:</div>
+            <div className="pokemon-types-header">Type:</div>
             <PokemonTypes types={pokemonDetails.type} />
           </div>
-          <div className="pokemon-carousel">
-            Carousel
+          <div className="pokemon-weaknesses">
+            <div className="pokemon-types-header">Weak against:</div>
+            <PokemonTypes types={pokemonDetails.weaknesses} />
           </div>
         </div>
       );
