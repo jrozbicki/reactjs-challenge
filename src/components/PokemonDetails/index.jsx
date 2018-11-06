@@ -39,6 +39,9 @@ function PokemonDetails({ pokemonDetails }) {
             <div className="pokemon-details">Type:</div>
             <PokemonTypes types={pokemonDetails.type} />
           </div>
+          <div className="pokemon-carousel">
+            Carousel
+          </div>
         </div>
       );
     }
