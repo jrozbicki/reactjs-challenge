@@ -2,6 +2,19 @@
 
 Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgornicz/))
 
+### Base version is at 'master' branch, bonus features are at 'bonus-features' branch
+  Base version contains:
+    * List of Pokemons
+    * Pagination
+    * Routing (/pokemons/:page)
+    * Loader (spinner)
+    * Error screen
+  
+  Bonus features:
+    * Quantity select
+    * Modal with more details
+    * Navbar with search
+
 ### To get started
 
 1. Clone repo and change directory
@@ -20,7 +33,7 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
 3. Start client server (port 5000)
 
    ```
-   npm server
+   npm run server
    ```
 
 4. Start client server (port 3000)
@@ -29,7 +42,12 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
    npm start
    ```
 
-7. Check it out!
+5. Run unit tests
+
+```
+npm run test
+```
+
 
 ### Built with
 
