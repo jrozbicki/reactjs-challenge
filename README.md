@@ -42,6 +42,12 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
    npm start
    ```
 
+5. Run unit tests
+
+```
+npm run test
+```
+
 
 ### Built with
 
