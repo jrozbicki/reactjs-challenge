@@ -50,6 +50,10 @@ Mobile:
 4. Start client server (port 3000)
 
    ```
+   If you want to check out bonus features, first change branch with:
+   git checkout bonus-features
+   
+   then:
    npm start
    ```
 
