@@ -9,7 +9,7 @@ function ShowError() {
         <img src={Pikachu} alt="pikachu" />
       </div>
       <span className="error-text">Oops! Something went wrong...</span>
-      <Link to="/" className="error-link">Go back</Link>
+      <Link to="/" className="error-link">Go to homepage</Link>
     </div>
   );
 }
