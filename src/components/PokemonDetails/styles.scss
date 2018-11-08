@@ -2,8 +2,7 @@
   display: grid;
   padding-top: 15px; 
   width: 100%;
-  //height: 500px;
-  grid-template-rows: 280px 1fr 1fr;
+  grid-template-rows: 280px auto 1fr;
   grid-template-columns: 160px 1fr 1fr 160px;
   grid-template-areas: 
   "img img img right"                       
@@ -87,11 +86,15 @@
   }
   
   .right-col {
-    margin: 10px auto;
+    margin: 0px auto;
     line-height: 180%;
     grid-area: right;
     display: flex;  
     flex-direction: column;
     border-left: none;
+  }
+
+  .modal-body {
+    padding-top: 0px;
   }
 }
