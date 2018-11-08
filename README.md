@@ -46,6 +46,7 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
 
    ```
    npm run test
+   hit 'a' to run all tests
    ```
 
 
