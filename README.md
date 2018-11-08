@@ -14,6 +14,17 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
   * Quantity select
   * Modal with more details
   * Navbar with search
+  
+### Short gallery for 'bonus-features'
+Desktop:
+<img src="https://user-images.githubusercontent.com/35103924/48197622-961d5f00-e356-11e8-83cb-44478700f51e.png" />
+<img src="https://user-images.githubusercontent.com/35103924/48197623-961d5f00-e356-11e8-9619-8b69cd2dc613.png" />
+
+Mobile: 
+<div style="display: flex;">
+  <img src="https://user-images.githubusercontent.com/35103924/48197624-96b5f580-e356-11e8-95dd-2481663477c4.png" />
+  <img src="https://user-images.githubusercontent.com/35103924/48197627-96b5f580-e356-11e8-9e5a-54de0d05f7e4.png" />
+</div>
 
 ### To get started
 
@@ -46,16 +57,12 @@ Recruitment taks (author: [Sambor Górnicz](https://www.linkedin.com/in/samborgo
 
    ```
    npm run test
-   then hit 'a' to run all tests
    ```
 
 
 ### Built with
-
+- [create-react-app](https://github.com/facebook/create-react-app)
 - [React](https://reactjs.org/docs/getting-started.html)
 - [Redux](https://redux.js.org/)
 - [Bootstrap v4](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
-
-### License
-
-MIT
+- [SASS](https://sass-lang.com/guide)
