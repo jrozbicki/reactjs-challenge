@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+}
+
+.pokedex-logo {
+  width: 100px;
+}
+
+.form-control {
+  text-align: center;
+}
+
+@media only screen and (max-width: 565px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pokedex-logo {
+    margin-bottom: 10px;
+  }
+}

@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Navbar from '../../components/Navbar';
 import Pagination from '../Pagination';
+import Filter from '../../components/Filter';
 import PokemonsList from '../../components/PokemonList';
 import Spinner from '../../components/Spinner';
 import ShowError from '../../components/ShowError';
+import NoPokemonsHere from '../../components/NoPokemonsHere';
 import { getPokemons } from '../../store/actions/pokemons';
 
 const propTypes = {
@@ -23,26 +26,48 @@ const defaultProps = {
 };
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      limit: '20',
+    };
+  }
+
   componentDidMount() {
     const {
       getPokemons: getPokemonsAction,
       match: { params: { page: startingPage } },
     } = this.props;
+    const { limit } = this.state;
 
     if (startingPage) {
-      getPokemonsAction(startingPage);
+      getPokemonsAction(startingPage, limit);
     } else {
-      getPokemonsAction(1);
+      getPokemonsAction(1, limit);
     }
   }
 
-  componentDidUpdate({ match: { params: { page: previousPage } } }) {
+  componentDidUpdate({ match: { params: { page: previousPage } } }, prevState) {
     const { getPokemons: getPokemonsAction, match: { params: { page: currentPage } } } = this.props;
-
-    if (previousPage !== currentPage) {
-      getPokemonsAction(currentPage);
+    const { limit } = this.state;
+    if (previousPage !== currentPage || prevState.limit !== limit) {
+      getPokemonsAction(currentPage, limit);
     }
   }
+
+  setLimit = lim => this.setState({ limit: lim });
+
+  renderContent = (isLoading, pokemons, total, limit) => (
+    isLoading
+      ? <Spinner />
+      : (
+        <Fragment>
+          <PokemonsList pokemons={pokemons} />
+          <Pagination total={total} limit={limit} />
+        </Fragment>
+      )
+  );
 
   render() {
     const {
@@ -51,21 +76,26 @@ class Home extends Component {
       pokemons,
       total,
     } = this.props;
+    const { limit } = this.state;
 
     if (isError) {
       return <ShowError />;
     }
 
-    if (pokemons.length) {
-      return (
-        <Fragment>
-          <Pagination total={total} limit="20" />
-          {isLoading ? <Spinner /> : <PokemonsList pokemons={pokemons} />}
-          <Pagination total={total} limit="20" />
-        </Fragment>
-      );
-    }
-    return <ShowError />;
+    return (
+      <Fragment>
+        <Navbar limit={limit} />
+        <div className="content-container">
+          <Pagination total={total} limit={limit} />
+          <Filter setParentLimit={this.setLimit} />
+          {
+            pokemons.length
+              ? this.renderContent(isLoading, pokemons, total, limit)
+              : <NoPokemonsHere />
+          }
+        </div>
+      </Fragment>
+    );
   }
 }
 

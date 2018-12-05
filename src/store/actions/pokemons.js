@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URI, LIMIT } from '../../config';
+import { BASE_URI } from '../../config';
 
 export const POKEMONS_LIST_REQUESTED = 'POKEMONS_LIST_REQUESTED';
 export const POKEMONS_LIST_FAILED = 'POKEMONS_LIST_FAILED';
@@ -25,11 +25,23 @@ export function getPokemonsDone(data) {
   };
 }
 
-export const getPokemons = page => async (dispatch) => {
+export const getPokemons = (page, limit) => async (dispatch) => {
   try {
     dispatch(getPokemonsRequested());
     const response = await axios.get(
-      `${BASE_URI}/pokemon?_page=${page}${LIMIT}`,
+      `${BASE_URI}/pokemon?_page=${page}&_limit=${limit}`,
+    );
+    dispatch(getPokemonsDone(response));
+  } catch (err) {
+    dispatch(getPokemonsFailed(err));
+  }
+};
+
+export const getPokemonByName = (searchTerm, limit) => async (dispatch) => {
+  try {
+    dispatch(getPokemonsRequested());
+    const response = await axios.get(
+      `${BASE_URI}/pokemon?name_like=${searchTerm}&_limit=${limit}`,
     );
     dispatch(getPokemonsDone(response));
   } catch (err) {

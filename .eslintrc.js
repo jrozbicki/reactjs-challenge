@@ -6,6 +6,7 @@ module.exports = {
     node: true,
   },
   extends: 'airbnb',
+  parser: 'babel-eslint',
   rules: {
     'no-console': 'off',
     quotes: [2, 'single'],

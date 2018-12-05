@@ -1,0 +1,100 @@
+.modal-grid {
+  display: grid;
+  padding-top: 15px; 
+  width: 100%;
+  grid-template-rows: 280px auto 1fr;
+  grid-template-columns: 160px 1fr 1fr 160px;
+  grid-template-areas: 
+  "img img img right"                       
+  "types types types types"
+  "weaknesses weaknesses weaknesses weaknesses"
+}
+
+.pokemon-details {
+  font-size: 18px;
+}
+
+.pokemon-types-header {
+  text-align: center;
+}
+
+.pokemon-img-container {
+  grid-area: img;
+  margin: auto;
+}
+
+.right-col {
+  padding: 5px 0px 5px 20px;
+  grid-area: right;
+  display: flex;  
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.pokemon-weaknesses {
+  grid-area: weaknesses;
+  margin: 10px 0px;
+}
+
+.pokemon-types {
+  grid-area: types;
+  margin: 10px 0px;
+}
+
+.pokemon-carousel {
+  grid-area: carousel;
+  margin: auto;
+}
+
+.modal-header .close {
+  padding: 5px;
+  margin: 0px;
+}
+
+.modal-header {
+  padding: 10px;
+}
+
+.modal-title {
+  font-size: 20px;
+  margin: auto;
+}
+
+@media only screen and (max-width: 565px) {
+  .modal-grid {  
+    padding-top: 0px;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+    "img"
+    "right"                       
+    "types"
+    "weaknesses"
+  }
+
+  .pokemon-img-container {
+    grid-area: img;
+    width: 100%;
+    max-width: 280px;
+    margin: auto;
+  }
+
+  .pokemon-img-container > img {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .right-col {
+    margin: 0px auto;
+    line-height: 180%;
+    grid-area: right;
+    display: flex;  
+    flex-direction: column;
+    border-left: none;
+  }
+
+  .modal-body {
+    padding-top: 0px;
+  }
+}

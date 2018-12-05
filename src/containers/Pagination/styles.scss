@@ -1,7 +1,7 @@
 .pagination {
   display: flex;
   justify-content: center;
-  margin: 15px;
+  margin: 10px;
 }
 
 .page-link:focus { 
@@ -12,7 +12,13 @@
   background-color:#E7EBEE;
 }
 
-@media only screen and (max-width: 539px) {
+@media only screen and (max-width: 835px) {
+  .pagination {
+    margin: 10px auto;
+  }
+}
+
+@media only screen and (max-width: 565px) {
   .page {
     display: none;
   }
