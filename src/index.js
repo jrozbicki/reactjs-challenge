@@ -1,32 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-} from 'react-router-dom';
-
-import reducers from './store/reducers';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'mobx-react';
 
 import Home from './containers/Home';
 import ShowError from './components/ShowError';
+import PokemonStore from './stores/PokemonStore';
 import './styles/styles.scss';
 
-const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
-
-const store = createStoreWithMiddleware(
-  reducers,
-  /* eslint-disable no-underscore-dangle */
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-);
-
+const pokemonStore = new PokemonStore();
 ReactDOM.render(
   /* eslint-disable react/jsx-filename-extension */
-  <Provider store={store}>
+  <Provider pokemonStore={pokemonStore}>
     <BrowserRouter>
       <Switch>
         <Route path="/pokemons/:page" component={Home} />

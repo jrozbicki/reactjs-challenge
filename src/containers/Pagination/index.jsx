@@ -10,18 +10,26 @@ const propTypes = {
   match: PropTypes.instanceOf(Object).isRequired,
 };
 
-function Pagination({ match: { params: { page } }, total, limit }) {
+function Pagination({
+  match: {
+    params: { page },
+  },
+  total,
+  limit,
+}) {
   let currentPage = 1;
   if (page) {
     currentPage = parseInt(page, 10);
   }
 
-  const renderPages = (num) => {
+  const renderPages = num => {
     const pages = [];
     for (let i = 1; i <= num; i += 1) {
       pages.push(
         <li key={i} className={`page-item page ${currentPage === i && 'active'}`}>
-          <Link to={`/pokemons/${i}`} id={i} className="page-link">{i}</Link>
+          <Link to={`/pokemons/${i}`} id={i} className="page-link">
+            {i}
+          </Link>
         </li>,
       );
     }
@@ -31,16 +39,19 @@ function Pagination({ match: { params: { page } }, total, limit }) {
   return (
     <ul className="pagination">
       <li className={`page-item ${currentPage === 1 && 'disabled'}`}>
-        <Link to={`/pokemons/${currentPage - 1}`} className="page-link">Previous</Link>
+        <Link to={`/pokemons/${currentPage - 1}`} className="page-link">
+          Previous
+        </Link>
       </li>
       {renderPages(pageCounter(total, limit))}
       <li className={`page-item ${currentPage === pageCounter(total, limit) && 'disabled'}`}>
-        <Link to={`/pokemons/${currentPage + 1}`} className="page-link">Next</Link>
+        <Link to={`/pokemons/${currentPage + 1}`} className="page-link">
+          Next
+        </Link>
       </li>
     </ul>
   );
 }
-
 
 Pagination.propTypes = propTypes;
 

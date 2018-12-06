@@ -10,5 +10,6 @@ module.exports = {
   rules: {
     'no-console': 'off',
     quotes: [2, 'single'],
+    'linebreak-style': 0,
   },
 };

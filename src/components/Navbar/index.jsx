@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getPokemonByName } from '../../store/actions/pokemons';
 import Pokedex from '../../img/pokedex.png';
 
 const propTypes = {
-  getPokemonByName: PropTypes.func.isRequired,
+  pokemonStore: PropTypes.instanceOf(Object).isRequired,
   limit: PropTypes.string.isRequired,
 };
 
@@ -19,10 +17,13 @@ class Navbar extends Component {
     };
   }
 
-  handleInputChange = (e) => {
-    const { getPokemonByName: getPokemonByNameAction, limit } = this.props;
+  handleInputChange = e => {
+    const {
+      pokemonStore: { fetchPokemonByName },
+      limit,
+    } = this.props;
     this.setState({ searchTerm: e.target.value });
-    getPokemonByNameAction(e.target.value, limit);
+    fetchPokemonByName(e.target.value, limit);
   };
 
   render() {
@@ -49,4 +50,4 @@ class Navbar extends Component {
 
 Navbar.propTypes = propTypes;
 
-export default connect(null, { getPokemonByName })(Navbar);
+export default Navbar;
